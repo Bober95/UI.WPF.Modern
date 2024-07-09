@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iNKORE.UI.WPF.Modern.Controls.Helpers;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -367,8 +368,15 @@ namespace iNKORE.UI.WPF.Modern.Controls.Primitives
                 "Height",
                 typeof(double),
                 typeof(TitleBar),
-                new PropertyMetadata(32d));
+                new PropertyMetadata(36d, HeightProperty_ValueChanged));
 
+        private static void HeightProperty_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Window win)
+            {
+                WindowHelper.UpdateWindowChrome(win);
+            }
+        }
 
         public static double GetHeight(Window window)
         {
@@ -382,87 +390,84 @@ namespace iNKORE.UI.WPF.Modern.Controls.Primitives
 
         #endregion
 
-        #region ButtonCloseAvailability
+        #region CloseButtonAvailability
 
-        public static readonly DependencyProperty ButtonCloseAvailabilityProperty =
+        public static readonly DependencyProperty CloseButtonAvailabilityProperty =
             DependencyProperty.RegisterAttached(
-                "ButtonCloseAvailability",
+                "CloseButtonAvailability",
                 typeof(TitleBarButtonAvailability),
                 typeof(TitleBar),
                 new PropertyMetadata(TitleBarButtonAvailability.Auto));
 
 
-        public static TitleBarButtonAvailability GetButtonCloseAvailability(Window window)
+        public static TitleBarButtonAvailability GetCloseButtonAvailability(Window window)
         {
-            return (TitleBarButtonAvailability)window.GetValue(ButtonCloseAvailabilityProperty);
+            return (TitleBarButtonAvailability)window.GetValue(CloseButtonAvailabilityProperty);
         }
 
-        public static void SetButtonCloseAvailability(Window window, TitleBarButtonAvailability value)
+        public static void SetCloseButtonAvailability(Window window, TitleBarButtonAvailability value)
         {
-            window.SetValue(ButtonCloseAvailabilityProperty, value);
+            window.SetValue(CloseButtonAvailabilityProperty, value);
         }
 
-        public static readonly DependencyProperty ButtonMaximizeAvailabilityProperty =
+        public static readonly DependencyProperty MaximizeButtonAvailabilityProperty =
             DependencyProperty.RegisterAttached(
-                "ButtonMaximizeAvailability",
+                "MaximizeButtonAvailability",
                 typeof(TitleBarButtonAvailability),
                 typeof(TitleBar),
                 new PropertyMetadata(TitleBarButtonAvailability.Auto));
 
 
-        public static TitleBarButtonAvailability GetButtonMaximizeAvailability(Window window)
+        public static TitleBarButtonAvailability GetMaximizeButtonAvailability(Window window)
         {
-            return (TitleBarButtonAvailability)window.GetValue(ButtonMaximizeAvailabilityProperty);
+            return (TitleBarButtonAvailability)window.GetValue(MaximizeButtonAvailabilityProperty);
         }
 
-        public static void SetButtonMaximizeAvailability(Window window, TitleBarButtonAvailability value)
+        public static void SetMaximizeButtonAvailability(Window window, TitleBarButtonAvailability value)
         {
-            window.SetValue(ButtonMaximizeAvailabilityProperty, value);
+            window.SetValue(MaximizeButtonAvailabilityProperty, value);
         }
 
-        public static readonly DependencyProperty ButtonMinimizeAvailabilityProperty =
+        public static readonly DependencyProperty MinimizeButtonAvailabilityProperty =
             DependencyProperty.RegisterAttached(
-                "ButtonMinimizeAvailability",
+                "MinimizeButtonAvailability",
                 typeof(TitleBarButtonAvailability),
                 typeof(TitleBar),
                 new PropertyMetadata(TitleBarButtonAvailability.Auto));
 
 
-        public static TitleBarButtonAvailability GetButtonMinimizeAvailability(Window window)
+        public static TitleBarButtonAvailability GetMinimizeButtonAvailability(Window window)
         {
-            return (TitleBarButtonAvailability)window.GetValue(ButtonMinimizeAvailabilityProperty);
+            return (TitleBarButtonAvailability)window.GetValue(MinimizeButtonAvailabilityProperty);
         }
 
-        public static void SetButtonMinimizeAvailability(Window window, TitleBarButtonAvailability value)
+        public static void SetMinimizeButtonAvailability(Window window, TitleBarButtonAvailability value)
         {
-            window.SetValue(ButtonMinimizeAvailabilityProperty, value);
+            window.SetValue(MinimizeButtonAvailabilityProperty, value);
         }
 
         #endregion
 
+        #region ButtonGlyphStyle
 
+        public static readonly DependencyProperty ButtonGlyphStyleProperty =
+            DependencyProperty.RegisterAttached(
+                "ButtonGlyphStyle",
+                typeof(TitleBarButtonGlyphStyle?),
+                typeof(TitleBar),
+                new PropertyMetadata(null));
 
-        //#region MaximizeButtonTouchOptimize
+        public static TitleBarButtonGlyphStyle? GetButtonGlyphStyle(Window window)
+        {
+            return (TitleBarButtonGlyphStyle?)window.GetValue(ButtonGlyphStyleProperty);
+        }
 
-        //public static readonly DependencyProperty MaximizeButtonTouchOptimizeProperty =
-        //    DependencyProperty.RegisterAttached(
-        //        "MaximizeButtonTouchOptimize",
-        //        typeof(bool),
-        //        typeof(TitleBar),
-        //        new PropertyMetadata(false));
+        public static void SetButtonGlyphStyle(Window window, TitleBarButtonGlyphStyle? value)
+        {
+            window.SetValue(ButtonGlyphStyleProperty, value);
+        }
 
-
-        //public static bool GetMaximizeButtonTouchOptimize(Window window)
-        //{
-        //    return (bool)window.GetValue(MaximizeButtonTouchOptimizeProperty);
-        //}
-
-        //public static void SetMaximizeButtonTouchOptimize(Window window, bool value)
-        //{
-        //    window.SetValue(MaximizeButtonTouchOptimizeProperty, value);
-        //}
-
-        //#endregion
+        #endregion
 
 
         #region BackRequested
@@ -502,5 +507,11 @@ namespace iNKORE.UI.WPF.Modern.Controls.Primitives
         Collapsed,
         Disabled,
         Enabled
+    }
+
+    public enum TitleBarButtonGlyphStyle
+    {
+        MDL2,
+        Fluent,
     }
 }

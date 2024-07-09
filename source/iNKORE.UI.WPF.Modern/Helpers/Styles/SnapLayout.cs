@@ -31,14 +31,14 @@ namespace iNKORE.UI.WPF.Modern.Helpers.Styles
 
         private double _dpiScale;
 
-        private Button _button;
+        private TitleBarButton _button;
 
-        private SolidColorBrush _hoverColor;
-        private SolidColorBrush _pressedColor;
+        //private string _hoverColorKey;
+        //private string _pressedColorKey;
 
         public Button Target { get { return _button; } }
 
-        public void Register(Button button)
+        public void Register(TitleBarButton button)
         {
             _isButtonFocused = false;
             _button = button;
@@ -146,17 +146,24 @@ namespace iNKORE.UI.WPF.Modern.Helpers.Styles
         {
             if (_isButtonClicked)
             {
-                _button.Background = _pressedColor;
+                //_button.Background = _pressedColor;
+                //button.SetResourceReference(Button.BackgroundProperty, _pressedColorKey);
+                _button.Background = _button.PressedBackground;
             }
             else
             {
                 if (_isButtonFocused)
                 {
-                    _button.Background = _hoverColor;
+                    //_button.Background = _hoverColor;
+                    //_button.SetResourceReference(Button.BackgroundProperty, _hoverColorKey);
+                    _button.Background = _button.HoverBackground;
+
                 }
                 else
                 {
-                    _button.Background = DefaultButtonBackground;
+                    //_button.Background = DefaultButtonBackground;
+                    _button.ClearValue(TitleBarButton.BackgroundProperty);
+
                 }
             }
         }
@@ -200,8 +207,11 @@ namespace iNKORE.UI.WPF.Modern.Helpers.Styles
 
         private void SetHoverColor()
         {
-            _hoverColor = (SolidColorBrush)UIApplication.Current.FindResource("SystemControlHighlightListLowBrush") ?? new SolidColorBrush(Color.FromArgb(21, 255, 255, 255));
-            _pressedColor = (SolidColorBrush)UIApplication.Current.FindResource("SystemControlHighlightListMediumBrush") ?? new SolidColorBrush(Color.FromArgb(50, 0, 0, 0));
+            //_hoverColor = (SolidColorBrush)UIApplication.Current.FindResource("SystemControlHighlightListLowBrush") ?? new SolidColorBrush(Color.FromArgb(21, 255, 255, 255));
+            //_pressedColor = (SolidColorBrush)UIApplication.Current.FindResource("SystemControlHighlightListMediumBrush") ?? new SolidColorBrush(Color.FromArgb(50, 0, 0, 0));
+
+            ////_hoverColorKey = "SystemControlHighlightListLowBrush";
+            ////_pressedColorKey = "SystemControlHighlightListMediumBrush";
         }
 
     }

@@ -30,6 +30,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
         }
 
         private void ComboBox_Selected(object sender, RoutedEventArgs e)
@@ -54,12 +55,14 @@ namespace WpfApp1
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ThemeManager.Current.ApplicationTheme != ApplicationTheme.Dark)
-                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-            else
-            {
-                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-            }
+            //if (ThemeManager.Current.ApplicationTheme != ApplicationTheme.Dark)
+            //    ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+            //else
+            //{
+            //    ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+            //}
+            WindowChrome.GetWindowChrome(this).GlassFrameThickness = new Thickness(0, 2, 0, 0);
+            WindowChrome.GetWindowChrome(this).GlassFrameThickness = new Thickness(0, 1, 0, 0);
 
             //WindowHelper.ApplyDarkMode(this);
         }
@@ -74,7 +77,7 @@ namespace WpfApp1
             //AppBarToggleButton1.IsChecked = false;
             //AppBarToggleButton1.IsEnabled = false;
             //MicaHelper.RemoveTitleBar(this);
-            MicaHelper.Apply(this, BackdropType.Mica, false);
+            //MicaHelper.Apply(this, BackdropType.Mica, false);
             await InputBox.ShowAsync("promptssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssok", "promptssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssok", "test");
         }
 
@@ -125,6 +128,19 @@ namespace WpfApp1
             //});
             // bool b = AcrylicHelper.Apply(this, true);
             //System.Windows.MessageBox.Show(b.ToString());
+
+        }
+
+        private void Button_ToggleTheme_Click(object sender, RoutedEventArgs e)
+        {
+            if (ThemeManager.Current.ApplicationTheme == ApplicationTheme.Dark)
+            {
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+            }
+            else
+            {
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using iNKORE.UI.WPF.Modern.Common.IconKeys;
+﻿using iNKORE.UI.WPF.Controls;
+using iNKORE.UI.WPF.Modern.Common.IconKeys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,14 @@ namespace iNKORE.UI.WPF.Modern.Controls
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
+
+        public static readonly DependencyProperty IconSizeProperty = DependencyProperty.Register(nameof(IconSize), typeof(double), typeof(IconAndText), new PropertyMetadata(16d));
+        public double IconSize
+        {
+            get { return (double)GetValue(IconSizeProperty); }
+            set { SetValue(IconSizeProperty, value); }
+        }
+
 
         #endregion
     }

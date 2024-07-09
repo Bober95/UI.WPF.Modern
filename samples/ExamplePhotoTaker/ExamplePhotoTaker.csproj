@@ -9,8 +9,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="david-van-dijk-3LTht2nxd34-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\source\iNKORE.UI.WPF.Modern.Controls\iNKORE.UI.WPF.Modern.Controls.csproj" />
     <ProjectReference Include="..\..\source\Inkore.UI.WPF.Modern\iNKORE.UI.WPF.Modern.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="david-van-dijk-3LTht2nxd34-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\Page2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\Page2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

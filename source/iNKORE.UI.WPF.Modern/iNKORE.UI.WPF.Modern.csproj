@@ -32,6 +32,7 @@
 			Windows.Foundation.Diagnostics;
 			Windows.Foundation.PropertyType;
 		</CsWinRTExcludes>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFrameworkIdentifier)' != '.NETCoreApp'">
@@ -47,6 +48,10 @@
 	  <EmbeddedResource Remove="Common\VisualStates\**" />
 	  <None Remove="Common\VisualStates\**" />
 	  <Page Remove="Common\VisualStates\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Controls\SimpleStackPanel.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,7 +82,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="iNKORE.UI.WPF" Version="1.2.4" />
+	  <PackageReference Include="iNKORE.UI.WPF" Version="1.2.7.1" />
 	</ItemGroup>
 
 	<ItemGroup>
